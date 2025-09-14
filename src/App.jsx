@@ -31,13 +31,16 @@ function App() {
 
     try {
       // IMPORTANT: Replace with your backend server's URL
-      const response = await fetch("http://localhost:3000/generate-qr", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://qr-contact.onrender.com/generate-qr",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
