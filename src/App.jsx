@@ -22,6 +22,9 @@ function App() {
     });
   };
 
+  const backendUrl =
+    import.meta.env.VITE_QR_CONTACT_BACKEND_URL || "http://localhost:3000";
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent page reload
@@ -31,16 +34,13 @@ function App() {
 
     try {
       // IMPORTANT: Replace with your backend server's URL
-      const response = await fetch(
-        "https://qr-contact.onrender.com/generate-qr",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(`${backendUrl}/generate-qr`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
